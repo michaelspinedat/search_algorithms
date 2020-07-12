@@ -39,6 +39,23 @@ def binary_search(numbers, target):
             high = index - 1
     return -1
 
+
+"""
+Recursive Binary Search Function 
+Returns either the index of the location in the array,
+or -1 if the array did not contain the targetValue
+"""
+def binary_search_recursive(numbers, low, high, target):
+    if low > high:
+        return - 1
+    index = math.floor((low + high) / 2)
+    if numbers[index] == target:
+        return index
+    elif numbers[index] < target:
+        return binary_search_recursive(numbers, index + 1, high, target)
+    else:
+        return binary_search_recursive(numbers, low, index - 1, target)
+
 primes = [2, 3, 5, 7, 11, 13, 17, 
           19, 23, 29, 31, 37, 41, 
           43, 47, 53, 59, 61, 67, 
@@ -46,3 +63,4 @@ primes = [2, 3, 5, 7, 11, 13, 17,
 
 print(linear_search(primes, 97))
 print(binary_search(primes, 41))
+print(binary_search_recursive(primes, 0, len(primes), 79))
